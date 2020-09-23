@@ -35,7 +35,7 @@ class MovieViewController: UIViewController,UITableViewDataSource, UITableViewDe
         
             return cell
     }
-    
+ 
     
     
     @IBOutlet var tableView: UITableView!
@@ -71,6 +71,15 @@ class MovieViewController: UIViewController,UITableViewDataSource, UITableViewDe
         task.resume()
         // Do any additional setup after loading the view.
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?){
+         
+         let cell = sender as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let movie = movies[indexPath.row]
+        let detailsViewControler = segue.destination as! MovieDetailsViewController
+        detailsViewControler.movie = movie
+        tableView.deselectRow(at: indexPath, animated: true)
+     }
     
 
 
